@@ -12,12 +12,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
+    // https://sebastianaigner.github.io/demo-image-api/pictures.json
+    val imageBaseUrl = "https://sebastianaigner.github.io/demo-image-api"
     MaterialTheme {
         var greetingText by remember { mutableStateOf("Hello, World!") }
         var showImage by remember { mutableStateOf(false) }
@@ -29,9 +33,10 @@ fun App() {
                 Text(greetingText)
             }
             AnimatedVisibility(showImage) {
-                Image(
-                    painterResource("compose-multiplatform.xml"),
-                    null
+                KamelImage(
+                    resource = asyncPainterResource("$imageBaseUrl/pigeon/vladislav-nikonov-yVYaUSwkTOs-unsplash.jpg"),
+                    contentDescription = null
+
                 )
             }
         }

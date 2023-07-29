@@ -4,6 +4,11 @@ plugins {
     id("org.jetbrains.compose")
 }
 
+repositories {
+    mavenCentral()
+    google()
+}
+
 kotlin {
     androidTarget()
     sourceSets {
